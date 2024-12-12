@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love Pod</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Glittering Stars Animation */
+        @keyframes glitter {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .glitter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .glitter span {
+            position: absolute;
+            background-color: white;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: glitter 1.5s infinite;
+        }
+
+        /* Explosion Animation */
+        @keyframes explosion {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+                box-shadow: 0 0 30px rgba(255, 165, 0, 1);
+            }
+
+            100% {
+                transform: scale(5);
+                opacity: 0;
+                box-shadow: 0 0 100px rgba(255, 165, 0, 0);
+            }
+        }
+
+        .explosion {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: explosion 1s ease-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Rainbow Background */
+        @keyframes rainbow {
+            0% {
+                background-color: #ff0000;
+            }
+
+            14% {
+                background-color: #ff7f00;
+            }
+
+            28% {
+                background-color: #ffff00;
+            }
+
+            42% {
+                background-color: #00ff00;
+            }
+
+            57% {
+                background-color: #0000ff;
+            }
+
+            71% {
+                background-color: #4b0082;
+            }
+
+            85% {
+                background-color: #9400d3;
+            }
+
+            100% {
+                background-color: #ff0000;
+            }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, #1a1a1a, #444);
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: slideIn 2s ease-out, introText 5s ease-out;
+        }
+
+        header h1 {
+            font-size: 5rem;
+            color: #ff7f50;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: glow 1.5s infinite alternate, shake 0.5s infinite, rainbow 5s infinite linear;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px #ff7f50, 0 0 20px #ff7f50;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #ff7f50, 0 0 30px #ff7f50;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            50% {
+                transform: rotate(-5deg);
+            }
+
+            75% {
+                transform: rotate(5deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes introText {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #222;
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideIn 3s ease-out;
+        }
+
+        nav a {
+            color: #ddd;
+            margin: 0 1.5rem;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff7f50;
+            text-decoration: underline;
+            transform: scale(1.1);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 1rem;
+            animation: fadeIn 2s ease-out;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff7f50;
+            margin-bottom: 2rem;
+        }
+
+        /* Song Card */
+        .song {
+            background: #333;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease;
+            animation: bounceIn 1.5s ease-out;
+        }
+
+        .song:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .song h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ff7f50;
+        }
+
+        .song p {
+            font-size: 1.1rem;
+            color: #bbb;
+            margin-bottom: 1.5rem;
+        }
+
+        .song iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Moving Eiffel Tower */
+        .eiffel {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100px;
+            animation: moveEiffel 5s linear infinite;
+        }
+
+        @keyframes moveEiffel {
+            0% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-100px);
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Vibration Animation */
+        @keyframes vibrate {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-4px);
+            }
+
+            50% {
+                transform: translateX(4px);
+            }
+
+            75% {
+                transform: translateX(-4px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .vibrate {
+            animation: vibrate 0.2s ease-in-out infinite;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: #888;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+            animation: slideIn 4s ease-out;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .song iframe {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Glittering Stars -->
+    <div class="glitter">
+        <span style="top: 10%; left: 30%; animation-delay: 0s;"></span>
+        <span style="top: 40%; left: 50%; animation-delay: 0.3s;"></span>
+        <span style="top: 70%; left: 80%; animation-delay: 0.5s;"></span>
+        <span style="top: 20%; left: 60%; animation-delay: 0.7s;"></span>
+        <span style="top: 50%; left: 90%; animation-delay: 0.9s;"></span>
+    </div>
+
+    <!-- Explosion Effect -->
+    <div class="explosion"></div>
+
+    <header>
+        <h1 class="vibrate">I Love Pod</h1>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#songs">Songs</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container" id="songs">
+        <h2>Featured Songs</h2>
+        <div class="song">
+            <h3>Heartbreak Kid</h3>
+            <p>Artist: Talha Anjum</p>
+            <!-- Embedded SoundCloud player -->
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1969337503&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Eiffel Tower Icon -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Eiffel_Tower_Silhouette.svg/500px-Eiffel_Tower_Silhouette.svg.png" alt="Eiffel Tower" class="eiffel">
+
+    <footer>
+        <p>&copy; 2024 I Love Pod. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
